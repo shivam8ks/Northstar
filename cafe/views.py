@@ -12,7 +12,7 @@ class SnackViewSet(viewsets.ModelViewSet):
     serializer_class = SnackSerializer
 
 
-class CartViewSet(viewsets.ModelViewSet):
+class ReportViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing orders.
     """
