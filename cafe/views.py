@@ -21,8 +21,8 @@ class ReportViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """
-        Optionally restricts the returned purchases to a given user,
-        by filtering against a `username` query parameter in the URL.
+        Optionally restricts the returned records to a given date range,
+        by filtering against 'from_date and to_date' query parameter in the URL.
         """
         from_date = self.request.query_params.get('from_date', None)
         to_date = self.request.query_params.get('to_date', None)
