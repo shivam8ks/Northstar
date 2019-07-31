@@ -19,3 +19,15 @@ class ReportViewSet(viewsets.ModelViewSet):
     queryset = cart.objects.all()
     serializer_class = CartSerializer
 
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        from_date = self.request.query_params.get('from_date', None)
+        to_date = self.request.query_params.get('to_date', None)
+        queryset = cart.objects.raw("select * from cafe_cart where date_time between "
+                                    +from_date + " and " + to_date+" ;")
+
+        return queryset
+

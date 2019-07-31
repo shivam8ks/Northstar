@@ -15,3 +15,4 @@ class CartSerializer(serializers.ModelSerializer):
         fields = ('emp_id', 'cart_id', 'snack_id', 'qty', 'date_time', 'total', 'payment_status')
         fields = '__all__'
 
+
