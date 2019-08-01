@@ -1,9 +1,11 @@
 from django.db import models
 import datetime
-from django.utils import timezone
 
 
-class snacks(models.Model):
+class Snacks(models.Model):
+    """
+    This model defines the fields in the "cafe_snacks" table.
+    """
     name = models.CharField(max_length=100)
     price = models.FloatField()
     is_active = models.BooleanField(default=False)
@@ -14,7 +16,10 @@ class snacks(models.Model):
 #     date_time = models.DateField(default=datetime.date.today)
 
 
-class cart(models.Model):
+class Cart(models.Model):
+    """
+    This model defines the fields in the "cafe_cart" table.
+    """
     emp_id = models.IntegerField(null=True)
     cart_id = models.IntegerField(null=True)
     snack_id = models.IntegerField(null=True)
@@ -26,12 +31,3 @@ class cart(models.Model):
 
     def __str__(self):
         return "Employee id: " + str(self.emp_id) + " and total: " + str(self.total)
-
-
-
-
-"""
-temp = cart.objects.raw("select * from cafe_cart;")
- from cafe.views import ReportViewSet
-  from cafe.models import cart, snacks
-"""

@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from .models import snacks, cart
 from .serializers import SnackSerializer, CartSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, response
+from rest_framework.decorators import action
 
 
 class SnackViewSet(viewsets.ModelViewSet):
@@ -10,6 +10,22 @@ class SnackViewSet(viewsets.ModelViewSet):
     """
     queryset = snacks.objects.all()
     serializer_class = SnackSerializer
+    """
+    Updated the insertion and updation of records based on incoming json objects.
+    """
+    @action(detail=False, methods=['POST'])
+    def bulk_create(self, request):
+        d = request.data
+        ob_list = self.serializer_class(d, many=True)
+        out_list = []
+        for i in ob_list.data:
+            try:
+                s = snacks.objects.get(name=i["name"], price__exact=i["price"])
+                s.is_active = i["is_active"]
+                s.save()
+            except Exception as e:
+                snacks.objects.create(name=i["name"], price=i["price"], is_active=i["is_active"])
+        return response.Response(out_list)
 
 
 class ReportViewSet(viewsets.ModelViewSet):
