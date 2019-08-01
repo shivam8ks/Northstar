@@ -26,8 +26,17 @@ class ReportViewSet(viewsets.ModelViewSet):
         """
         from_date = self.request.query_params.get('from_date', None)
         to_date = self.request.query_params.get('to_date', None)
-        queryset = cart.objects.raw("select * from cafe_cart where date_time between "
-                                    +from_date + " and " + to_date+" ;")
 
-        return queryset
+        print(from_date, to_date)
+        if from_date:
+            pass
+        if to_date:
+            pass
 
+        query_set = cart.objects.filter(date_time__range=[str(from_date), str(to_date)])
+
+        return query_set
+
+
+# url for testing
+# http://127.0.0.1:8000/rest/v1/report/?from_date=2019-07-22&to_date=2019-07-31

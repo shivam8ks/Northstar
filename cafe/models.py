@@ -6,8 +6,12 @@ from django.utils import timezone
 class snacks(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
-    date_time = models.DateField(default=datetime.date.today)
     is_active = models.BooleanField(default=False)
+
+
+# class menu(models.Model):
+#     snack_id = models.ForeignKey(snacks.pk)
+#     date_time = models.DateField(default=datetime.date.today)
 
 
 class cart(models.Model):
@@ -20,4 +24,14 @@ class cart(models.Model):
     payment_status = models.CharField(max_length=50)
     txn_id = models.CharField(max_length=200, null=True)
 
+    def __str__(self):
+        return "Employee id: " + str(self.emp_id) + " and total: " + str(self.total)
 
+
+
+
+"""
+temp = cart.objects.raw("select * from cafe_cart;")
+ from cafe.views import ReportViewSet
+  from cafe.models import cart, snacks
+"""
