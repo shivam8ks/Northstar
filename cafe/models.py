@@ -27,11 +27,3 @@ class cart(models.Model):
     def __str__(self):
         return "Employee id: " + str(self.emp_id) + " and total: " + str(self.total)
 
-
-
-
-"""
-temp = cart.objects.raw("select * from cafe_cart;")
- from cafe.views import ReportViewSet
-  from cafe.models import cart, snacks
-"""

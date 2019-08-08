@@ -27,7 +27,6 @@ class ReportViewSet(viewsets.ModelViewSet):
         from_date = self.request.query_params.get('from_date', None)
         to_date = self.request.query_params.get('to_date', None)
 
-        print(from_date, to_date)
         if from_date:
             pass
         if to_date:
@@ -37,6 +36,8 @@ class ReportViewSet(viewsets.ModelViewSet):
 
         return query_set
 
-
 # url for testing
 # http://127.0.0.1:8000/rest/v1/report/?from_date=2019-07-22&to_date=2019-07-31
+# http://127.0.0.1:8000/rest/v1/report/?from_date=2019-07-31&to_date=2019-07-22
+# http://127.0.0.1:8000/rest/v1/report/?from_date=2019-07-31&to_date=2019-07-31
+# http://127.0.0.1:8000/rest/v1/report/?from_date=2018-07-22&to_date=2018-07-31
