@@ -50,6 +50,15 @@ class ReportViewSet(viewsets.ModelViewSet):
             pass
 
         query_set = cart.objects.filter(date_time__range=[str(from_date), str(to_date)])
+        # query_set2 = snacks.objects.filter(is_active=1)
+
+
+        # sql = "select * from cafe_cart as c, cafe_snacks as s where c.snack_id=s.id and c.date_time between '"+from_date+"' and '"+to_date+"' and s.is_active=1;"
+        #c.id, c.payment_status, c.cart_id, c.date_time, c.emp_id, c.qty, c.snack_id, s.name
+        # query_set = cart.objects.raw(sql)
+
+
+
 
         return query_set
 
